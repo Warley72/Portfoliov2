@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "./components/layout/header";
+import Home from "./components/layout/home";
 
 import GlobalStyle from "./styles/globalStyles";
 import { ThemeProvider } from "styled-components";
@@ -11,6 +12,7 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Header />
+        <Home/>
       </ThemeProvider>
     </>
   );

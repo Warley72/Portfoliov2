@@ -1,17 +1,29 @@
-import {HeaderContainer, NavContainer, NavLink} from "./style";
+import React, { useState, useEffect } from 'react';
+import { HeaderContainer, NavContainer, NavLink } from './style';
 
 export default function Header() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 500); 
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <HeaderContainer>
+    <HeaderContainer isScrolled={isScrolled}>
         <div>
-            <img src="./Warley.png" alt="logo aqui" />
+          <img src="./Warley.png" alt="ImaginLogo" />
         </div>
         <NavContainer>
-            <li><NavLink>Home</NavLink></li>
-            <li><NavLink>About</NavLink></li>
-            <li><NavLink>Portfolio</NavLink></li>
-            <li><NavLink>Services</NavLink></li>
-            <li><NavLink>Contact</NavLink></li>
+          <NavLink href="#home">Home</NavLink>
+          <NavLink href="#about">About</NavLink>
+          <NavLink href="#services">Services</NavLink>
+          <NavLink href="#contact">Contact</NavLink>
         </NavContainer>
     </HeaderContainer>
   );
